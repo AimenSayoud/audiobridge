@@ -1,6 +1,6 @@
 # Architecture
 
-AudioBridge has two halves that share one small wire protocol:
+Tethertone has two halves that share one small wire protocol:
 
 - **macOS server** (`macos/`, Swift) — captures audio, serves it over TCP,
   advertises itself with a QR code and optionally tunnels over USB with
@@ -15,7 +15,7 @@ AudioBridge has two halves that share one small wire protocol:
 │  ├─ SystemAudioCapture (ScreenCaptureKit)      │ fan-out      │───────►│  (races all hosts,  (target depth,   (rate-trimmed for  │
 │  └─ DeviceCapture (AVAudioEngine, BlackHole)   ▼              │        │   auto-reconnect)    drop-oldest)     drift correction)  │
 │                                   ClientSession × N           │        │                                                          │
-│                                   (handshake, queue, ping)    │        │  AudioBridgeService — foreground service, owns the above │
+│                                   (handshake, queue, ping)    │        │  TethertoneService — foreground service, owns the above │
 └───────────────────────────────────────────────────────────────┘        └──────────────────────────────────────────────────────────┘
 ```
 
@@ -68,11 +68,11 @@ Wi-Fi takes over when it is not. The Mac polls for USB devices and sets up
 
 ## Pairing and authentication
 
-The QR encodes an `audiobridge://` URI with the hosts, port, a 16-byte random
-token and display hints. The token lives in `~/.audiobridge/token` (mode 0600)
+The QR encodes a `tethertone://` URI with the hosts, port, a 16-byte random
+token and display hints. The token lives in `~/.tethertone/token` (mode 0600)
 so pairing survives restarts. The server compares it in constant time and sends
 no audio before a valid HELLO. Rotating the token invalidates every paired
-phone. Tapping an `audiobridge://` link on the phone pairs without the camera.
+phone. Tapping a `tethertone://` link on the phone pairs without the camera.
 
 The token authenticates; it does **not** encrypt. See [SECURITY.md](../SECURITY.md).
 
@@ -92,7 +92,7 @@ phone's differ by tens of parts per million. A buffer that is only corrected
 when it starves drifts one way until it either runs dry or grows without bound
 — over an hour, that is seconds of added latency.
 
-AudioBridge holds the buffer at its target by playing a fraction of a percent
+Tethertone holds the buffer at its target by playing a fraction of a percent
 off nominal rate. At ±0.2 % that is about three cents of pitch — inaudible —
 and there is never a discontinuity. The phone shows it live on the **Clock
 drift** card (“playing 222 ppm fast to drain the buffer”), and the Mac shows the
@@ -114,7 +114,7 @@ says which mode is active.
 
 ### Lifecycle
 
-`AudioBridgeService` is a foreground service of type `mediaPlayback`. It owns
+`TethertoneService` is a foreground service of type `mediaPlayback`. It owns
 the client and the sink, so playback continues with the screen off, and its
 notification can stop it from outside the app. The client reconnects
 automatically with backoff when the Mac stops or the network changes.
@@ -142,7 +142,7 @@ The protocol is implemented three times, independently:
 
 | Implementation | Language | Tested by |
 |---|---|---|
-| macOS server | Swift | `AudioBridge --selftest` — fixed byte vectors |
+| macOS server | Swift | `Tethertone --selftest` — fixed byte vectors |
 | Android/JVM client | Kotlin | `./gradlew :shared:jvmTest` — the **same** vectors |
 | `tools/probe.py` | Python | run against a live server |
 

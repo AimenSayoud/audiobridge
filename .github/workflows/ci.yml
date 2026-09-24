@@ -20,7 +20,7 @@ jobs:
         run: ./build.sh --universal
       - name: Protocol self-test
         working-directory: macos
-        run: ./AudioBridge.app/Contents/MacOS/AudioBridge --selftest
+        run: ./Tethertone.app/Contents/MacOS/Tethertone --selftest
 
   android:
     name: Android app and shared module

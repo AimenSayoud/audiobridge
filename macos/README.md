@@ -1,6 +1,6 @@
-# AudioBridge for macOS
+# Tethertone for macOS
 
-The server half of AudioBridge: a native SwiftUI app that captures what the Mac
+The server half of Tethertone: a native SwiftUI app that captures what the Mac
 is playing and serves it to the Android app over USB and Wi-Fi.
 
 ```bash
@@ -14,7 +14,7 @@ optional. See [../docs/BUILDING.md](../docs/BUILDING.md) for every option.
 ## The app
 
 **Menu bar icon** shows status and holds only the essentials: Start/Stop, the
-current capture method, the last error, **Open AudioBridge…** and Quit. The icon
+current capture method, the last error, **Open Tethertone…** and Quit. The icon
 fills in while a phone is receiving audio.
 
 **Window** has everything else:
@@ -47,8 +47,8 @@ automatically.
 ## Command line
 
 ```bash
-AudioBridge.app/Contents/MacOS/AudioBridge --headless   # server only, prints the pairing URI
-AudioBridge.app/Contents/MacOS/AudioBridge --selftest   # protocol conformance checks
+Tethertone.app/Contents/MacOS/Tethertone --headless   # server only, prints the pairing URI
+Tethertone.app/Contents/MacOS/Tethertone --selftest   # protocol conformance checks
 ```
 
 ## Distribution
@@ -74,10 +74,10 @@ After that, notarize with `xcrun notarytool` and staple the ticket.
 Package.swift
 build.sh / package.sh          build, bundle, sign / dmg + pkg
 make-signing-identity.sh       stable self-signed code-signing identity
-AudioBridge.entitlements       hardened-runtime microphone entitlement
-icon.py                        regenerates AudioBridge.icns (needs Pillow)
+Tethertone.entitlements       hardened-runtime microphone entitlement
+icon.py                        regenerates Tethertone.icns (needs Pillow)
 installer/                     pkg scripts and installer pages
-Sources/AudioBridgeMac/
+Sources/TethertoneMac/
   Entry.swift                  @main: app, --headless or --selftest
   SelfTest.swift               protocol vectors shared with the Kotlin tests
   Audio/

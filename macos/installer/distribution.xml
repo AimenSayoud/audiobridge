@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <installer-gui-script minSpecVersion="2">
-    <title>AudioBridge</title>
-    <organization>dev.audiobridge</organization>
+    <title>Tethertone</title>
+    <organization>dev.tethertone</organization>
     <options customize="never" require-scripts="false" hostArchitectures="x86_64,arm64"/>
     <welcome file="welcome.html" mime-type="text/html"/>
     <conclusion file="conclusion.html" mime-type="text/html"/>
     <volume-check>
         <allowed-os-versions><os-version min="14.0"/></allowed-os-versions>
     </volume-check>
-    <pkg-ref id="dev.audiobridge.mac"/>
+    <pkg-ref id="dev.tethertone.mac"/>
     <choices-outline>
-        <line choice="default"><line choice="dev.audiobridge.mac"/></line>
+        <line choice="default"><line choice="dev.tethertone.mac"/></line>
     </choices-outline>
     <choice id="default"/>
-    <choice id="dev.audiobridge.mac" visible="false">
-        <pkg-ref id="dev.audiobridge.mac"/>
+    <choice id="dev.tethertone.mac" visible="false">
+        <pkg-ref id="dev.tethertone.mac"/>
     </choice>
-    <pkg-ref id="dev.audiobridge.mac" version="__VERSION__" onConclusion="none">component.pkg</pkg-ref>
+    <pkg-ref id="dev.tethertone.mac" version="__VERSION__" onConclusion="none">component.pkg</pkg-ref>
 </installer-gui-script>

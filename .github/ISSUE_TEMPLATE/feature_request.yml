@@ -6,7 +6,7 @@ body:
     id: problem
     attributes:
       label: The problem
-      description: What are you trying to do that AudioBridge makes hard?
+      description: What are you trying to do that Tethertone makes hard?
     validations:
       required: true
   - type: textarea

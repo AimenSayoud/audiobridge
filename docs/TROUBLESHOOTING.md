@@ -2,25 +2,25 @@
 
 ## macOS
 
-### “AudioBridge can't be opened” / “Apple could not verify…”
+### “Tethertone can't be opened” / “Apple could not verify…”
 
 Release builds are not notarized. Open **System Settings › Privacy & Security**,
-scroll to the message about AudioBridge and click **Open Anyway**. Or:
+scroll to the message about Tethertone and click **Open Anyway**. Or:
 
 ```bash
-xattr -dr com.apple.quarantine /Applications/AudioBridge.app
+xattr -dr com.apple.quarantine /Applications/Tethertone.app
 ```
 
 ### Permission errors although the toggle is on
 
 macOS ties each permission to the app's code signature. After an update signed
-differently, System Settings can still show AudioBridge as allowed while macOS
-denies it. Switch AudioBridge **off and on again** in the relevant list. If that
+differently, System Settings can still show Tethertone as allowed while macOS
+denies it. Switch Tethertone **off and on again** in the relevant list. If that
 does not help, reset the permission and press Start again to get a fresh prompt:
 
 ```bash
-tccutil reset ScreenCapture dev.audiobridge.mac   # Screen Recording method
-tccutil reset Microphone dev.audiobridge.mac      # BlackHole method
+tccutil reset ScreenCapture dev.tethertone.mac   # Screen Recording method
+tccutil reset Microphone dev.tethertone.mac      # BlackHole method
 ```
 
 If you build from source, run `macos/make-signing-identity.sh` once so rebuilds
@@ -31,7 +31,7 @@ keep the same signature (see [BUILDING.md](BUILDING.md)).
 The **Screen Recording** capture method uses ScreenCaptureKit, the only macOS
 API that hands over the full system mix without a virtual driver. It has no
 audio-only mode, so macOS classes it as screen recording and shows the
-recording indicator. AudioBridge requests a 2×2 video frame twice a second and
+recording indicator. Tethertone requests a 2×2 video frame twice a second and
 discards it; no image is ever read.
 
 To avoid the permission, install BlackHole and switch **Capture method** to
@@ -41,7 +41,7 @@ To avoid the permission, install BlackHole and switch **Capture method** to
 
 - **BlackHole method:** the Mac's output must go *into* BlackHole. Set **BlackHole
   2ch** as the sound output, or build a Multi-Output Device in Audio MIDI Setup
-  that includes it. Check that AudioBridge's input device is BlackHole too.
+  that includes it. Check that Tethertone's input device is BlackHole too.
 - **Screen Recording method:** make sure something is playing. Audio sent
   straight to a hardware device by pro audio apps that bypass the system mix may
   not be captured.
@@ -65,7 +65,7 @@ BlackHole's sample rate changed after capture started. Set it to 48 kHz in
   phone's packets are not reaching the Mac: the devices are on different
   networks, or the network blocks device-to-device traffic (common on guest and
   corporate Wi-Fi). Use the USB cable.
-- The macOS firewall may be blocking incoming connections. Allow AudioBridge
+- The macOS firewall may be blocking incoming connections. Allow Tethertone
   in **System Settings › Network › Firewall › Options**.
 - If you changed the port or rotated the token, scan the new QR.
 
@@ -75,7 +75,7 @@ BlackHole's sample rate changed after capture started. Set it to 48 kHz in
 - Enable **USB debugging** on the phone and accept the “Allow USB debugging?”
   prompt.
 - Check `adb devices` lists the phone as `device`, not `unauthorized`.
-- Make sure **Network › Offer the USB path** is on. AudioBridge sets up
+- Make sure **Network › Offer the USB path** is on. Tethertone sets up
   `adb reverse` by itself when the phone appears.
 
 ### Audio stutters
@@ -90,7 +90,7 @@ BlackHole's sample rate changed after capture started. Set it to 48 kHz in
 
 ### Playback stops when the screen turns off
 
-Some manufacturers kill background apps aggressively. Exempt AudioBridge from
+Some manufacturers kill background apps aggressively. Exempt Tethertone from
 battery optimisation in the phone's settings. See
 [dontkillmyapp.com](https://dontkillmyapp.com).
 
@@ -113,6 +113,6 @@ a metered connection.
 
 ## Still stuck?
 
-Open an [issue](https://github.com/AimenSayoud/audiobridge/issues/new/choose)
+Open an [issue](https://github.com/AimenSayoud/tethertone/issues/new/choose)
 with your macOS and Android versions, the phone model, the capture method, and
 the contents of the Mac's **Activity** card.

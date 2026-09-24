@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AudioBridge</string>
+    <string name="app_name">Tethertone</string>
     <string name="channel_name">Audio streaming</string>
     <string name="channel_description">Shows the connection while Mac audio is playing</string>
 </resources>

@@ -7,8 +7,8 @@
 # Swift / macOS app
 macos/.build/
 macos/.swiftpm/
-macos/AudioBridge.app/
-macos/AudioBridge.iconset/
+macos/Tethertone.app/
+macos/Tethertone.iconset/
 *.pkg
 *.dmg
 

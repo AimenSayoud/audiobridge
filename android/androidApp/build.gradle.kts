@@ -12,14 +12,14 @@ val appVersionCode = appVersion.split(".").map { it.toInt() }
 // Release signing comes from Gradle properties (~/.gradle/gradle.properties or
 // -P flags), never from the repository. Without them a release build falls back
 // to the debug key, so anyone can still build and install one locally.
-val releaseKeystore = providers.gradleProperty("AUDIOBRIDGE_KEYSTORE").orNull
+val releaseKeystore = providers.gradleProperty("TETHERTONE_KEYSTORE").orNull
 
 android {
-    namespace = "dev.audiobridge.app"
+    namespace = "dev.tethertone.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "dev.audiobridge.app"
+        applicationId = "dev.tethertone.app"
         minSdk = 26
         targetSdk = 36
         versionCode = appVersionCode
@@ -30,9 +30,9 @@ android {
         if (releaseKeystore != null) {
             create("release") {
                 storeFile = file(releaseKeystore)
-                storePassword = providers.gradleProperty("AUDIOBRIDGE_KEYSTORE_PASSWORD").get()
-                keyAlias = providers.gradleProperty("AUDIOBRIDGE_KEY_ALIAS").get()
-                keyPassword = providers.gradleProperty("AUDIOBRIDGE_KEY_PASSWORD").get()
+                storePassword = providers.gradleProperty("TETHERTONE_KEYSTORE_PASSWORD").get()
+                keyAlias = providers.gradleProperty("TETHERTONE_KEY_ALIAS").get()
+                keyPassword = providers.gradleProperty("TETHERTONE_KEY_PASSWORD").get()
             }
         }
     }

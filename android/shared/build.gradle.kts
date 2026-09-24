@@ -32,7 +32,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.audiobridge.shared"
+    namespace = "dev.tethertone.shared"
     compileSdk = 36
 
     defaultConfig {

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds AudioBridge.app with the Command Line Tools only — Xcode is not needed.
+# Builds Tethertone.app with the Command Line Tools only — Xcode is not needed.
 #
 #   ./build.sh                 release build for this Mac's architecture
 #   ./build.sh --universal     arm64 + x86_64 in one binary (what releases ship)
@@ -23,10 +23,10 @@ for arg in "$@"; do
   esac
 done
 
-APP="AudioBridge.app"
-BUNDLE_ID="dev.audiobridge.mac"
+APP="Tethertone.app"
+BUNDLE_ID="dev.tethertone.mac"
 VERSION="$(tr -d '[:space:]' < ../VERSION)"
-BINARY_NAME="AudioBridgeMac"
+BINARY_NAME="TethertoneMac"
 
 if [ "$UNIVERSAL" = 1 ]; then
   BINS=()
@@ -46,30 +46,30 @@ fi
 echo "[bundle] assembling $APP ($(lipo -archs "$BIN"))"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp "$BIN" "$APP/Contents/MacOS/AudioBridge"
-cp AudioBridge.icns "$APP/Contents/Resources/"
+cp "$BIN" "$APP/Contents/MacOS/Tethertone"
+cp Tethertone.icns "$APP/Contents/Resources/"
 
 cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
-  <key>CFBundleExecutable</key><string>AudioBridge</string>
+  <key>CFBundleExecutable</key><string>Tethertone</string>
   <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
-  <key>CFBundleName</key><string>AudioBridge</string>
-  <key>CFBundleDisplayName</key><string>AudioBridge</string>
+  <key>CFBundleName</key><string>Tethertone</string>
+  <key>CFBundleDisplayName</key><string>Tethertone</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
   <key>CFBundleVersion</key><string>$VERSION</string>
-  <key>CFBundleIconFile</key><string>AudioBridge</string>
+  <key>CFBundleIconFile</key><string>Tethertone</string>
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
-  <key>NSHumanReadableCopyright</key><string>MIT License · AudioBridge contributors</string>
+  <key>NSHumanReadableCopyright</key><string>MIT License · Tethertone contributors</string>
   <!-- Deliberately NOT LSUIElement: the app has a real window and a Dock
        icon. Menu-bar-only is a runtime activation policy the user can toggle. -->
   <!-- BlackHole is an input device, so capturing it needs the microphone
        permission. Without this key the app is killed on first capture. -->
   <key>NSMicrophoneUsageDescription</key>
-  <string>AudioBridge reads the audio your Mac is playing so it can stream it to your phone.</string>
+  <string>Tethertone reads the audio your Mac is playing so it can stream it to your phone.</string>
 </dict></plist>
 PLIST
 
@@ -83,21 +83,21 @@ plutil -lint "$APP/Contents/Info.plist" >/dev/null
 # The entitlement matters: under the hardened runtime, microphone access is
 # refused without com.apple.security.device.audio-input, whatever the toggle in
 # System Settings says.
-IDENTITY="${SIGNING_IDENTITY:-AudioBridge Local Signing}"
+IDENTITY="${SIGNING_IDENTITY:-Tethertone Local Signing}"
 if security find-identity -v -p codesigning 2>/dev/null | grep -q "$IDENTITY"; then
   echo "[sign] using stable identity: $IDENTITY"
   codesign --force --sign "$IDENTITY" --identifier "$BUNDLE_ID" --options runtime \
-    --entitlements AudioBridge.entitlements --timestamp=none "$APP"
+    --entitlements Tethertone.entitlements --timestamp=none "$APP"
 else
   echo "[sign] no stable identity found, signing ad-hoc"
   echo "[sign] permissions will reset on every rebuild — run ./make-signing-identity.sh once"
-  codesign --force --sign - --identifier "$BUNDLE_ID" --entitlements AudioBridge.entitlements "$APP"
+  codesign --force --sign - --identifier "$BUNDLE_ID" --entitlements Tethertone.entitlements "$APP"
 fi
 codesign --verify --deep --strict "$APP" && echo "[sign] signature verified"
 
 if [ "$INSTALL" = 1 ]; then
   # Quit a running copy first so the bundle is not replaced underneath it.
-  osascript -e 'quit app "AudioBridge"' >/dev/null 2>&1 || true
+  osascript -e 'quit app "Tethertone"' >/dev/null 2>&1 || true
   echo "[install] copying to /Applications"
   rm -rf "/Applications/$APP"
   cp -R "$APP" "/Applications/$APP"

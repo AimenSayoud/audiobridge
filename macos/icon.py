@@ -1,4 +1,4 @@
-"""Generates AudioBridge.icns — the same rising-bars mark as the Android app."""
+"""Generates Tethertone.icns — the same rising-bars mark as the Android app."""
 import os, subprocess, sys
 from PIL import Image, ImageDraw
 
@@ -20,8 +20,8 @@ def render(size):
     return img
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else "AudioBridge.icns"
-    iconset = "AudioBridge.iconset"
+    out = sys.argv[1] if len(sys.argv) > 1 else "Tethertone.icns"
+    iconset = "Tethertone.iconset"
     os.makedirs(iconset, exist_ok=True)
     for base in (16, 32, 128, 256, 512):
         render(base).save(f"{iconset}/icon_{base}x{base}.png")

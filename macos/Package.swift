@@ -5,12 +5,12 @@ import PackageDescription
 // queues are already serialised by hand, and Swift 6 strict concurrency would
 // demand a large annotation pass for no behaviour change.
 let package = Package(
-    name: "AudioBridgeMac",
+    name: "TethertoneMac",
     platforms: [.macOS(.v14)],
     targets: [
         .executableTarget(
-            name: "AudioBridgeMac",
-            path: "Sources/AudioBridgeMac"
+            name: "TethertoneMac",
+            path: "Sources/TethertoneMac"
         )
     ]
 )

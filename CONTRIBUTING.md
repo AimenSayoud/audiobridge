@@ -1,11 +1,11 @@
 # Contributing
 
-Thanks for helping improve AudioBridge. Bug reports, fixes, documentation and
+Thanks for helping improve Tethertone. Bug reports, fixes, documentation and
 testing on more devices are all valuable.
 
 ## Reporting bugs
 
-Use the [bug report form](https://github.com/AimenSayoud/audiobridge/issues/new/choose)
+Use the [bug report form](https://github.com/AimenSayoud/tethertone/issues/new/choose)
 and include:
 
 - macOS version, Android version and phone model;
@@ -26,7 +26,7 @@ cd android && ./gradlew :shared:jvmTest :androidApp:assembleDebug
 Run the checks CI runs:
 
 ```bash
-cd macos && ./build.sh && ./AudioBridge.app/Contents/MacOS/AudioBridge --selftest
+cd macos && ./build.sh && ./Tethertone.app/Contents/MacOS/Tethertone --selftest
 cd android && ./gradlew :shared:jvmTest :androidApp:assembleDebug
 ```
 
@@ -36,7 +36,7 @@ If you run a server and a client, also check `python3 tools/probe.py` passes.
 
 - **Keep the two protocol implementations in step.** Any change to
   [docs/PROTOCOL.md](docs/PROTOCOL.md) needs matching changes in the Swift
-  codec and self-test (`macos/Sources/AudioBridgeMac/Protocol`, `SelfTest.swift`),
+  codec and self-test (`macos/Sources/TethertoneMac/Protocol`, `SelfTest.swift`),
   the Kotlin codec and tests (`android/shared`), and `tools/probe.py`. Never
   break compatibility within a protocol version; bump `v` in the handshake
   instead.

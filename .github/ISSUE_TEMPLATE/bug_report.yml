@@ -13,7 +13,7 @@ body:
     id: versions
     attributes:
       label: Versions
-      placeholder: "AudioBridge 0.1.0 · macOS 15.7 · Android 16 on Pixel 9"
+      placeholder: "Tethertone 0.2.0 · macOS 15.7 · Android 16 on Pixel 9"
     validations:
       required: true
   - type: dropdown

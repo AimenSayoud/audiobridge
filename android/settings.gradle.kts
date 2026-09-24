@@ -26,7 +26,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "audiobridge"
+rootProject.name = "tethertone"
 
 // Everything that is not a screen and not a speaker: the wire protocol, the
 // pairing payload, the jitter buffer, the connection state machine. Targets

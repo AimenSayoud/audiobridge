@@ -6,9 +6,20 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-09-24
+
+### Changed
+- **The project is now called Tethertone** (formerly AudioBridge). Every
+  identifier changed with the name, so this release installs alongside 0.1.0
+  rather than updating it:
+  - macOS bundle ID `dev.tethertone.mac`, app `Tethertone.app`
+  - Android application ID `dev.tethertone.app`
+  - pairing links use `tethertone://`; the token lives in `~/.tethertone/token`
+- Remove AudioBridge 0.1.0 from both devices, then pair again once.
+
 ## [0.1.0] — 2026-09-24
 
-First public release.
+First public release, published under the name AudioBridge.
 
 ### macOS
 - Menu-bar and windowed SwiftUI app; universal binary for Apple Silicon and Intel.
@@ -30,5 +41,6 @@ First public release.
 - Wire protocol v1, specified in `docs/PROTOCOL.md` and checked by identical
   test vectors in Swift and Kotlin.
 
-[Unreleased]: https://github.com/AimenSayoud/audiobridge/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/AimenSayoud/audiobridge/releases/tag/v0.1.0
+[Unreleased]: https://github.com/AimenSayoud/tethertone/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/AimenSayoud/tethertone/releases/tag/v0.2.0
+[0.1.0]: https://github.com/AimenSayoud/tethertone/releases/tag/v0.1.0

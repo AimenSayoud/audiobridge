@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Independent AudioBridge client: checks a running server without a phone.
+"""Independent Tethertone client: checks a running server without a phone.
 
 Standard library only; --play additionally needs `pip install sounddevice`.
 
-    python3 probe.py                      # read ~/.audiobridge/token, connect to 127.0.0.1
-    python3 probe.py 'audiobridge://p?..' # exactly what the QR encodes
+    python3 probe.py                      # read ~/.tethertone/token, connect to 127.0.0.1
+    python3 probe.py 'tethertone://p?..' # exactly what the QR encodes
     python3 probe.py --seconds 30         # listen longer (default 8)
     python3 probe.py --play               # also play the stream locally
 
@@ -57,7 +57,7 @@ def main() -> int:
     else:
         host = a.host or "127.0.0.1"
         port = a.port
-        token = a.token or (Path.home() / ".audiobridge/token").read_text().strip()
+        token = a.token or (Path.home() / ".tethertone/token").read_text().strip()
 
     print(f"[probe] connecting to {host}:{port}")
     s = socket.create_connection((host, port), timeout=10)

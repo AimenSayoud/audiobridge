@@ -1,31 +1,31 @@
 <div align="center">
 
-# AudioBridge
+# Tethertone
 
 **Your Mac's audio, on your Android phone — over USB or Wi-Fi, paired with one QR scan.**
 
-[Website](https://aimensayoud.github.io/audiobridge-website/) ·
-[Download](https://aimensayoud.github.io/audiobridge-website/download/) ·
-[Setup guide](https://aimensayoud.github.io/audiobridge-website/guide/) ·
-[How it works](https://aimensayoud.github.io/audiobridge-website/how-it-works/)
+[Website](https://aimensayoud.github.io/tethertone-website/) ·
+[Download](https://aimensayoud.github.io/tethertone-website/download/) ·
+[Setup guide](https://aimensayoud.github.io/tethertone-website/guide/) ·
+[How it works](https://aimensayoud.github.io/tethertone-website/how-it-works/)
 
-[![CI](https://github.com/AimenSayoud/audiobridge/actions/workflows/ci.yml/badge.svg)](https://github.com/AimenSayoud/audiobridge/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/AimenSayoud/audiobridge)](https://github.com/AimenSayoud/audiobridge/releases/latest)
+[![CI](https://github.com/AimenSayoud/tethertone/actions/workflows/ci.yml/badge.svg)](https://github.com/AimenSayoud/tethertone/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/AimenSayoud/tethertone)](https://github.com/AimenSayoud/tethertone/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-black)
 ![Android 8+](https://img.shields.io/badge/Android-8.0%2B-3DDC84)
 
 </div>
 
-AudioBridge streams whatever your Mac is playing to an Android phone as
+Tethertone streams whatever your Mac is playing to an Android phone as
 uncompressed 16-bit stereo PCM, typically at 48 kHz. The Mac runs a small native menu-bar app; the
 phone runs a native Kotlin app that plays the stream through `AudioTrack`, with
 a jitter buffer and continuous clock-drift correction so latency stays flat for
 hours instead of creeping up.
 
 ```
-Mac apps ──► system audio mix ──► AudioBridge.app ──┬── USB  (adb reverse) ──┐
-             (ScreenCaptureKit or BlackHole)         └── Wi-Fi (TCP)        ──┴─► AudioBridge for Android ──► speaker / headphones
+Mac apps ──► system audio mix ──► Tethertone.app ──┬── USB  (adb reverse) ──┐
+             (ScreenCaptureKit or BlackHole)         └── Wi-Fi (TCP)        ──┴─► Tethertone for Android ──► speaker / headphones
 ```
 
 ## Features
@@ -49,30 +49,30 @@ Mac apps ──► system audio mix ──► AudioBridge.app ──┬── US
 
 ## Install
 
-Download the latest files from **[Releases](https://github.com/AimenSayoud/audiobridge/releases/latest)**:
+Download the latest files from **[Releases](https://github.com/AimenSayoud/tethertone/releases/latest)**:
 
 | Platform | File | Requirements |
 |---|---|---|
-| macOS | `AudioBridge-<version>-macos.dmg` (or `.pkg`) | macOS 14 Sonoma or later, Apple Silicon or Intel |
-| Android | `AudioBridge-<version>-android.apk` | Android 8.0 or later |
+| macOS | `Tethertone-<version>-macos.dmg` (or `.pkg`) | macOS 14 Sonoma or later, Apple Silicon or Intel |
+| Android | `Tethertone-<version>-android.apk` | Android 8.0 or later |
 
 ### macOS
 
-1. Open the `.dmg` and drag **AudioBridge** into **Applications**.
+1. Open the `.dmg` and drag **Tethertone** into **Applications**.
 2. The app is not notarized by Apple, so the first launch is blocked. Open
    **System Settings › Privacy & Security**, scroll down and click **Open Anyway**
    — or run once in Terminal:
    ```bash
-   xattr -dr com.apple.quarantine /Applications/AudioBridge.app
+   xattr -dr com.apple.quarantine /Applications/Tethertone.app
    ```
-3. Launch AudioBridge and press **Start**. macOS asks for one permission, depending
+3. Launch Tethertone and press **Start**. macOS asks for one permission, depending
    on the capture method (see [Capture methods](#capture-methods)).
 
 ### Android
 
 1. Download the `.apk` on your phone and open it. Allow installs from your
    browser or file manager when Android asks.
-2. Open AudioBridge and tap **Scan pairing QR**.
+2. Open Tethertone and tap **Scan pairing QR**.
 
 For the USB route you also need
 [USB debugging](https://developer.android.com/studio/debug/dev-options#enable)
@@ -81,7 +81,7 @@ Wi-Fi needs nothing extra.
 
 ## Usage
 
-1. On the Mac, open AudioBridge and press **Start** (menu bar icon or window).
+1. On the Mac, open Tethertone and press **Start** (menu bar icon or window).
 2. On the phone, tap **Scan pairing QR** and point it at the code on the Mac's
    **Pairing** tab.
 3. Play anything on the Mac.
@@ -109,7 +109,7 @@ The Screen Recording method never reads a pixel — ScreenCaptureKit simply has
 no audio-only mode, so macOS files it under screen recording.
 
 To use BlackHole: install it, set **BlackHole 2ch** as the Mac's sound output
-(or as part of a Multi-Output Device), choose **BlackHole** in AudioBridge and
+(or as part of a Multi-Output Device), choose **BlackHole** in Tethertone and
 select it as the input device.
 
 ## Documentation
@@ -126,7 +126,7 @@ select it as the input device.
 ## Build from source
 
 ```bash
-git clone https://github.com/AimenSayoud/audiobridge.git && cd audiobridge
+git clone https://github.com/AimenSayoud/tethertone.git && cd tethertone
 
 # macOS app — needs only the Xcode Command Line Tools
 cd macos && ./make-signing-identity.sh && ./build.sh --install
@@ -161,4 +161,4 @@ Bug reports, fixes and ideas are welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 
 ## License
 
-[MIT](LICENSE) © AudioBridge contributors
+[MIT](LICENSE) © Tethertone contributors

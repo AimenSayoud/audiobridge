@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # Builds the macOS release artifacts into ../dist:
 #
-#   AudioBridge-<version>-macos.dmg   drag-to-Applications disk image
-#   AudioBridge-<version>-macos.pkg   double-click installer
+#   Tethertone-<version>-macos.dmg   drag-to-Applications disk image
+#   Tethertone-<version>-macos.pkg   double-click installer
 #
 # Both contain the same universal (arm64 + x86_64) app.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-IDENTIFIER="dev.audiobridge.mac"
+IDENTIFIER="dev.tethertone.mac"
 VERSION="$(tr -d '[:space:]' < ../VERSION)"
 DIST="../dist"
-DMG="$DIST/AudioBridge-$VERSION-macos.dmg"
-PKG="$DIST/AudioBridge-$VERSION-macos.pkg"
+DMG="$DIST/Tethertone-$VERSION-macos.dmg"
+PKG="$DIST/Tethertone-$VERSION-macos.pkg"
 
 ./build.sh --universal
 mkdir -p "$DIST"
@@ -23,16 +23,16 @@ trap 'rm -rf "$WORK"' EXIT
 # --- disk image -------------------------------------------------------------
 echo "[dmg] building"
 mkdir -p "$WORK/dmg"
-cp -R AudioBridge.app "$WORK/dmg/AudioBridge.app"
+cp -R Tethertone.app "$WORK/dmg/Tethertone.app"
 ln -s /Applications "$WORK/dmg/Applications"
 rm -f "$DMG"
-hdiutil create -quiet -volname "AudioBridge $VERSION" -srcfolder "$WORK/dmg" \
+hdiutil create -quiet -volname "Tethertone $VERSION" -srcfolder "$WORK/dmg" \
   -fs HFS+ -format UDZO -ov "$DMG"
 
 # --- installer package ------------------------------------------------------
 echo "[pkg] building component"
 mkdir -p "$WORK/root" "$WORK/pkgs"
-cp -R AudioBridge.app "$WORK/root/AudioBridge.app"
+cp -R Tethertone.app "$WORK/root/Tethertone.app"
 pkgbuild --quiet \
   --root "$WORK/root" \
   --identifier "$IDENTIFIER" \

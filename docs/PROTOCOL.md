@@ -1,4 +1,4 @@
-# AudioBridge wire protocol v1
+# Tethertone wire protocol v1
 
 One TCP connection per sink. The server (macOS) pushes audio; the client
 (Android) only sends a handshake and pong frames. All multi-byte integers are
@@ -65,7 +65,7 @@ the server; the client also reports its own view in STATS.
 ## 3. Pairing payload (QR code)
 
 ```
-audiobridge://p?h=<ipv4>&h=<ipv4>&p=<port>&t=<token>&r=<rate>&c=<channels>&n=<name>
+tethertone://p?h=<ipv4>&h=<ipv4>&p=<port>&t=<token>&r=<rate>&c=<channels>&n=<name>
 ```
 
 `h` repeats once per reachable interface address; the client races connections
@@ -87,7 +87,7 @@ client treats them identically once connected.
 
 ## 5. Security
 
-The token is 16 random bytes, base64url, persisted at `~/.audiobridge/token`
+The token is 16 random bytes, base64url, persisted at `~/.tethertone/token`
 so pairing survives restarts. It authenticates the client to the server only —
 the audio itself is **not encrypted**. On an untrusted network, use USB mode.
 Rotate it in the macOS app under **Pairing › Generate a new token**; every

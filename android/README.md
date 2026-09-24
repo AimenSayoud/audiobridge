@@ -1,6 +1,6 @@
-# AudioBridge for Android
+# Tethertone for Android
 
-The client half of AudioBridge: a Jetpack Compose app that receives the Mac's
+The client half of Tethertone: a Jetpack Compose app that receives the Mac's
 audio and plays it with low, stable latency. It also contains the shared Kotlin
 Multiplatform module and a desktop test client.
 
@@ -15,7 +15,7 @@ builds and signing.
 
 ## The app
 
-- **Scan pairing QR** — CameraX + ZXing scanner. Opening an `audiobridge://` link
+- **Scan pairing QR** — CameraX + ZXing scanner. Opening a `tethertone://` link
   pairs without the camera, and **Enter address manually** takes host, port and
   token.
 - **Home** — connection state, level meter, volume, jitter buffer slider, live
@@ -36,7 +36,7 @@ shared/        Kotlin Multiplatform (android + jvm)
   androidMain    AudioTrack sink with drift correction
   jvmMain        javax.sound sink
   commonTest     protocol vectors, pairing, jitter buffer, level, routes
-androidApp/    Compose UI, QR scanner, AudioBridgeService, preferences
+androidApp/    Compose UI, QR scanner, TethertoneService, preferences
 desktopSink/   headless JVM client built on the same shared code
 ```
 
@@ -46,8 +46,8 @@ pings, reports stats and reconnects with exponential backoff. It has no Android
 dependencies, which is why it runs unchanged in `desktopSink`:
 
 ```bash
-./gradlew :desktopSink:run --args="--seconds 10"                # uses ~/.audiobridge/token
-./gradlew :desktopSink:run --args="'audiobridge://p?h=…&t=…'"   # a specific pairing URI
+./gradlew :desktopSink:run --args="--seconds 10"                # uses ~/.tethertone/token
+./gradlew :desktopSink:run --args="'tethertone://p?h=…&t=…'"   # a specific pairing URI
 ```
 
 See [../docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) for how the jitter

@@ -6,7 +6,7 @@
 # the permissions and the app came back silently broken. A fixed identity means
 # you approve once.
 set -euo pipefail
-NAME="${1:-AudioBridge Local Signing}"
+NAME="${1:-Tethertone Local Signing}"
 
 if security find-identity -v -p codesigning 2>/dev/null | grep -q "$NAME"; then
   echo "Identity '$NAME' already exists."
@@ -14,7 +14,7 @@ if security find-identity -v -p codesigning 2>/dev/null | grep -q "$NAME"; then
 fi
 
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK"' EXIT
-PW="audiobridge"
+PW="tethertone"
 
 cat > "$WORK/ext.cnf" <<CNF
 [req]

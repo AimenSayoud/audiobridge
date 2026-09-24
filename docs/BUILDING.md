@@ -17,10 +17,10 @@ The version number for both apps lives in [`VERSION`](../VERSION).
 ```bash
 cd macos
 ./make-signing-identity.sh     # once per machine — see below
-./build.sh                     # → macos/AudioBridge.app (this Mac's architecture)
+./build.sh                     # → macos/Tethertone.app (this Mac's architecture)
 ./build.sh --install           # …and copy it into /Applications
 ./build.sh --universal         # arm64 + x86_64
-./package.sh                   # → dist/AudioBridge-<version>-macos.{dmg,pkg}
+./package.sh                   # → dist/Tethertone-<version>-macos.{dmg,pkg}
 ```
 
 The app is a SwiftPM executable; `build.sh` assembles the `.app` bundle,
@@ -33,20 +33,20 @@ macOS stores Screen Recording and Microphone permission against the app's
 code signature. An ad-hoc signature changes on every build, so without a stable
 identity **each rebuild silently revokes both permissions**.
 `make-signing-identity.sh` creates a self-signed code-signing certificate named
-*AudioBridge Local Signing* in your login keychain. `build.sh` uses it when it
+*Tethertone Local Signing* in your login keychain. `build.sh` uses it when it
 exists and falls back to ad-hoc signing otherwise. Use another identity with
 `SIGNING_IDENTITY="…" ./build.sh`.
 
 The app is signed with the hardened runtime and the
 `com.apple.security.device.audio-input` entitlement
-([`AudioBridge.entitlements`](../macos/AudioBridge.entitlements)). Without that
+([`Tethertone.entitlements`](../macos/Tethertone.entitlements)). Without that
 entitlement, microphone access, and so BlackHole capture, is refused.
 
 ### Self-test and headless mode
 
 ```bash
-macos/AudioBridge.app/Contents/MacOS/AudioBridge --selftest   # protocol conformance vectors
-macos/AudioBridge.app/Contents/MacOS/AudioBridge --headless   # server without UI, prints the pairing URI
+macos/Tethertone.app/Contents/MacOS/Tethertone --selftest   # protocol conformance vectors
+macos/Tethertone.app/Contents/MacOS/Tethertone --headless   # server without UI, prints the pairing URI
 ```
 
 XCTest ships with Xcode rather than the Command Line Tools, so the Swift
@@ -75,10 +75,10 @@ Release builds are signed with a key supplied through Gradle properties, never
 from the repository. Put these in `~/.gradle/gradle.properties`:
 
 ```properties
-AUDIOBRIDGE_KEYSTORE=/absolute/path/to/audiobridge-release.jks
-AUDIOBRIDGE_KEYSTORE_PASSWORD=…
-AUDIOBRIDGE_KEY_ALIAS=audiobridge
-AUDIOBRIDGE_KEY_PASSWORD=…
+TETHERTONE_KEYSTORE=/absolute/path/to/tethertone-release.jks
+TETHERTONE_KEYSTORE_PASSWORD=…
+TETHERTONE_KEY_ALIAS=tethertone
+TETHERTONE_KEY_PASSWORD=…
 ```
 
 Without them, `assembleRelease` signs with the debug key so anyone can still
@@ -89,16 +89,16 @@ switching between debug and release builds on one phone needs an uninstall.
 
 ```bash
 # terminal 1 — the server
-macos/AudioBridge.app/Contents/MacOS/AudioBridge --headless
+macos/Tethertone.app/Contents/MacOS/Tethertone --headless
 
 # terminal 2 — either client
 python3 tools/probe.py                                     # independent Python client
 cd android && ./gradlew :desktopSink:run --args="--seconds 10"   # the real Kotlin client on the JVM
 ```
 
-`probe.py` reads the token from `~/.audiobridge/token`, completes the
+`probe.py` reads the token from `~/.tethertone/token`, completes the
 handshake, answers pings, and reports the delivered sample rate, sequence
-gaps, throughput and peak level, ending in PASS or FAIL. It also accepts a pairing URI: `python3 tools/probe.py 'audiobridge://p?…'`.
+gaps, throughput and peak level, ending in PASS or FAIL. It also accepts a pairing URI: `python3 tools/probe.py 'tethertone://p?…'`.
 If `probe.py` passes and the Kotlin client does not, the bug is in the Kotlin
 client, and vice versa.
 
@@ -118,7 +118,7 @@ release APK into `dist/`, with a `SHA256SUMS` file. To publish:
 2. Run `./scripts/release.sh`.
 3. Commit, tag `v<version>`, push, and attach `dist/*` to a GitHub release:
    ```bash
-   gh release create "v$(cat VERSION)" dist/* --title "AudioBridge $(cat VERSION)" --notes-file <(…)
+   gh release create "v$(cat VERSION)" dist/* --title "Tethertone $(cat VERSION)" --notes-file <(…)
    ```
 
 Keep the Android keystore and the macOS signing identity backed up. Updates

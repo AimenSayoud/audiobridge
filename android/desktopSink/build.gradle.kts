@@ -12,5 +12,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("dev.audiobridge.desktop.MainKt")
+    mainClass.set("dev.tethertone.desktop.MainKt")
 }
