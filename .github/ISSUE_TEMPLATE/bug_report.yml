@@ -1,0 +1,37 @@
+name: Bug report
+description: Something does not work as described
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: "AudioBridge 0.1.0 · macOS 15.7 · Android 16 on Pixel 9"
+    validations:
+      required: true
+  - type: dropdown
+    id: capture
+    attributes:
+      label: Capture method
+      options: [Screen Recording, BlackHole, Not sure]
+    validations:
+      required: true
+  - type: dropdown
+    id: route
+    attributes:
+      label: Connection route
+      options: [USB, Wi-Fi, VPN / tunnel, Not connecting at all]
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: The Mac's Activity card, the phone's stats and Clock drift card, or screenshots.

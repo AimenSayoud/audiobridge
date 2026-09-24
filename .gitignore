@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Release output
+/dist/
+
+# Swift / macOS app
+macos/.build/
+macos/.swiftpm/
+macos/AudioBridge.app/
+macos/AudioBridge.iconset/
+*.pkg
+*.dmg
+
+# Gradle / Android
+android/.gradle/
+android/.kotlin/
+android/build/
+android/*/build/
+android/local.properties
+*.apk
+*.aab
+
+# Signing material — never commit
+*.jks
+*.keystore
+*.p12
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.xcodeproj/
+xcuserdata/
+
+# Python
+__pycache__/
+.venv/

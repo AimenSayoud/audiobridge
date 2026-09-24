@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Troubleshooting guide
+    url: https://github.com/AimenSayoud/audiobridge/blob/main/docs/TROUBLESHOOTING.md
+    about: Permissions, connection problems and remote access — most questions are answered here.
+  - name: Report a security vulnerability
+    url: https://github.com/AimenSayoud/audiobridge/security/advisories/new
+    about: Please report vulnerabilities privately.
