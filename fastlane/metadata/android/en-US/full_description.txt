@@ -1,0 +1,23 @@
+Tethertone turns your Android phone into a speaker for your Mac. Everything the Mac plays, from music and video to calls and games, comes out of the phone, over a USB cable or Wi-Fi.
+
+<b>How it works</b>
+<ul>
+<li>Install Tethertone on the Mac (macOS 14 or later) and press Start.</li>
+<li>Scan the pairing QR code with this app. That's the whole setup; the phone remembers the Mac and reconnects on its own.</li>
+</ul>
+
+<b>Features</b>
+<ul>
+<li>USB and Wi-Fi at once: the QR code lists every route, and the phone uses whichever answers first, so the cable wins when it's plugged in.</li>
+<li>Lossless: uncompressed 16-bit stereo audio, no codec.</li>
+<li>Stays in sync: a jitter buffer (20–250 ms, 90 ms by default) plus continuous clock-drift correction, so delay doesn't creep up over long sessions.</li>
+<li>Plays with the screen off, with a Stop button in the notification.</li>
+<li>Live diagnostics: buffer depth, underruns, lost packets and drift correction.</li>
+</ul>
+
+<b>Privacy</b>
+No account, no ads, no analytics, no cloud. The app talks only to your own Mac. A random token in the QR code keeps other people on your network out. The audio itself is not encrypted, so use the USB cable or a VPN on networks you don't trust.
+
+The camera is used only to scan the pairing code.
+
+Tethertone is free and open source under the MIT License. It was previously called AudioBridge.

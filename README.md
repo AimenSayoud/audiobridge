@@ -7,7 +7,8 @@
 [Website](https://aimensayoud.github.io/tethertone-website/) ·
 [Download](https://aimensayoud.github.io/tethertone-website/download/) ·
 [Setup guide](https://aimensayoud.github.io/tethertone-website/guide/) ·
-[How it works](https://aimensayoud.github.io/tethertone-website/how-it-works/)
+[How it works](https://aimensayoud.github.io/tethertone-website/how-it-works/) ·
+[Compare](https://aimensayoud.github.io/tethertone-website/compare/)
 
 [![CI](https://github.com/AimenSayoud/tethertone/actions/workflows/ci.yml/badge.svg)](https://github.com/AimenSayoud/tethertone/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/AimenSayoud/tethertone)](https://github.com/AimenSayoud/tethertone/releases/latest)
@@ -120,6 +121,7 @@ select it as the input device.
 | [docs/PROTOCOL.md](docs/PROTOCOL.md) | The wire protocol, normative for both sides |
 | [docs/BUILDING.md](docs/BUILDING.md) | Building both apps from source, tests, releasing |
 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Permissions, connection problems, remote access |
+| [docs/FDROID.md](docs/FDROID.md) | Publishing on F-Droid: store metadata and the submission draft |
 | [macos/README.md](macos/README.md) | The macOS app |
 | [android/README.md](android/README.md) | The Android app and the shared Kotlin module |
 

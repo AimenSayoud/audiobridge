@@ -1,0 +1,1 @@
+Renamed from AudioBridge to Tethertone. Installs as a new app: remove AudioBridge and pair once more.
