@@ -4,6 +4,11 @@
 
 **Your Mac's audio, on your Android phone — over USB or Wi-Fi, paired with one QR scan.**
 
+[Website](https://aimensayoud.github.io/audiobridge-website/) ·
+[Download](https://aimensayoud.github.io/audiobridge-website/download/) ·
+[Setup guide](https://aimensayoud.github.io/audiobridge-website/guide/) ·
+[How it works](https://aimensayoud.github.io/audiobridge-website/how-it-works/)
+
 [![CI](https://github.com/AimenSayoud/audiobridge/actions/workflows/ci.yml/badge.svg)](https://github.com/AimenSayoud/audiobridge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/AimenSayoud/audiobridge)](https://github.com/AimenSayoud/audiobridge/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
